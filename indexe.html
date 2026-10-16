@@ -1,0 +1,3266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b20">
+  <title>مجرة التعلّم 🪐</title>
+
+  <!-- ========================================
+       القسم الأول: التصميم والألوان
+  ========================================= -->
+  <style>
+    :root {
+      --bg: #080b20;
+      --panel: #121936;
+      --panel2: #1b254a;
+      --text: #f4f6ff;
+      --muted: #aab5d8;
+      --line: #303b68;
+      --purple: #9380ff;
+      --blue: #61dfff;
+      --green: #55d6a0;
+      --red: #ff718a;
+      --shadow: 0 12px 35px #0003;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, Tahoma, Arial, sans-serif;
+    }
+
+    body.light {
+      --bg: #edf4ff;
+      --panel: #ffffff;
+      --panel2: #f1f5ff;
+      --text: #192344;
+      --muted: #64708c;
+      --line: #d7e0f3;
+      --purple: #7057df;
+      --blue: #078dbb;
+      --shadow: 0 12px 30px #18234412;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel2);
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .small {
+      font-size: .86rem;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 11px 15px;
+      background: var(--purple);
+      color: white;
+      font-weight: 750;
+    }
+
+    .btn.secondary {
+      background: var(--panel2);
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .btn.danger {
+      background: #a63858;
+      color: white;
+    }
+
+    .btn.full {
+      width: 100%;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    .between {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .three {
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    }
+
+    .card {
+      padding: 16px;
+      margin: 10px 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 10% 10%, #8876ff33, transparent 45%),
+        var(--panel);
+    }
+
+    h1 {
+      font-size: 1.65rem;
+      margin: 8px 0 14px;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+      margin: 14px 0;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 950;
+      text-align: center;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .planetmark {
+      font-size: 3.5rem;
+      text-align: center;
+    }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .45;
+      background-image:
+        radial-gradient(2px 2px at 20px 30px, #fff 99%, transparent),
+        radial-gradient(1px 1px at 90px 70px, #9ae7ff 99%, transparent),
+        radial-gradient(1px 1px at 150px 120px, #fff 99%, transparent);
+      background-size: 210px 160px;
+    }
+
+    /* تسجيل الدخول */
+
+    .auth {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+    }
+
+    .authbox {
+      width: min(460px, 100%);
+      padding: 25px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .tabs,
+    .subnav {
+      display: flex;
+      gap: 8px;
+      margin: 15px 0;
+      overflow-x: auto;
+    }
+
+    .tabs button,
+    .subnav button {
+      flex: 1;
+      white-space: nowrap;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel2);
+      color: var(--muted);
+    }
+
+    .tabs button.active,
+    .subnav button.active {
+      background: var(--purple);
+      color: white;
+    }
+
+    /* واجهة التطبيق */
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 18px 14px 110px;
+    }
+
+    .coin,
+    .streak {
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: var(--panel2);
+      color: var(--text);
+    }
+
+    .progress {
+      height: 9px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: var(--line);
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--purple), var(--blue));
+      transition: width .3s;
+    }
+
+    .planet {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 205px;
+      text-align: center;
+      gap: 12px;
+    }
+
+    .planet-art {
+      font-size: 3.7rem;
+    }
+
+    .lesson {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 13px;
+      margin: 9px 0;
+      background: var(--panel2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .grow {
+      flex: 1;
+      min-width: 130px;
+    }
+
+    .choicegrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 9px;
+    }
+
+    .choice {
+      padding: 14px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      color: var(--text);
+    }
+
+    /* القائمة السفلية */
+
+    .nav {
+      position: fixed;
+      z-index: 10;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      gap: 3px;
+      padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+      background: var(--panel);
+      border-top: 1px solid var(--line);
+    }
+
+    .nav button {
+      flex: 1;
+      max-width: 150px;
+      padding: 7px 2px;
+      border: 0;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--muted);
+      font-size: .72rem;
+    }
+
+    .nav button.active {
+      background: var(--panel2);
+      color: var(--blue);
+    }
+
+    .nav b {
+      display: block;
+      font-size: 1.25rem;
+    }
+
+    /* النوافذ والتنبيهات */
+
+    .modalbg {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      display: grid;
+      place-items: center;
+      padding: 15px;
+      background: #0009;
+    }
+
+    .modal {
+      width: min(540px, 100%);
+      max-height: 88vh;
+      overflow: auto;
+      padding: 20px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 50;
+      top: 72px;
+      left: 50%;
+      width: max-content;
+      max-width: 90%;
+      transform: translateX(-50%);
+      padding: 12px 18px;
+      border: 1px solid var(--purple);
+      border-radius: 12px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .event {
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 12px;
+      background: var(--panel2);
+    }
+
+    .lettergrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(55px, 1fr));
+      gap: 7px;
+    }
+
+    .letter {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      color: var(--text);
+      font-size: 1.35rem;
+    }
+
+    .daygrid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 4px;
+    }
+
+    .day {
+      min-height: 42px;
+      padding: 5px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      color: var(--text);
+    }
+
+    .avatar {
+      font-size: 3rem;
+    }
+
+    .environment {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+      border-radius: 18px;
+      background: linear-gradient(#99d7ff 0 50%, #7fb875 50%);
+    }
+
+    .environment button {
+      position: absolute;
+      border: 0;
+      background: transparent;
+      font-size: 2.2rem;
+    }
+
+    .environment-label {
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      left: 8px;
+      padding: 8px;
+      border-radius: 10px;
+      background: #ffffffdc;
+      color: #17213d;
+      text-align: center;
+    }
+
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: grid;
+      place-items: center;
+      background: #050716;
+      color: white;
+      text-align: center;
+    }
+
+    .alien {
+      display: inline-block;
+      font-size: 4rem;
+      animation: spin 4s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (min-width: 700px) {
+      main {
+        padding: 25px 22px 110px;
+      }
+
+      .nav {
+        gap: 10px;
+      }
+
+      .nav button {
+        font-size: .85rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stars"></div>
+  <div id="toast" class="toast hidden" role="status"></div>
+
+  <!-- ========================================
+       القسم الثاني: تسجيل الدخول وإنشاء الحساب
+  ========================================= -->
+
+  <section id="auth" class="auth">
+    <div class="authbox">
+      <div class="planetmark">🪐</div>
+
+      <div class="logo">
+        مجرة <span>التعلّم</span>
+      </div>
+
+      <p class="muted center">
+        كل درس… كوكب جديد تكتشفه ✨
+      </p>
+
+      <div class="tabs">
+        <button id="loginTab" class="active" type="button"
+          onclick="setAuthMode('login')">
+          تسجيل الدخول
+        </button>
+
+        <button id="signupTab" type="button"
+          onclick="setAuthMode('signup')">
+          إنشاء حساب
+        </button>
+      </div>
+
+      <form id="authForm">
+        <div id="nameField" class="field hidden">
+          <label for="username">اسم المستخدم</label>
+          <input id="username" type="text"
+            placeholder="اكتب اسمك" autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label for="email">البريد الإلكتروني</label>
+          <input id="email" type="email" required
+            placeholder="name@example.com"
+            autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label for="password">كلمة المرور</label>
+          <input id="password" type="password" required
+            minlength="6" placeholder="6 أحرف على الأقل"
+            autocomplete="current-password">
+        </div>
+
+        <button id="authButton" class="btn full" type="submit">
+          دخول إلى المجرة
+        </button>
+
+        <button id="forgotButton" class="btn secondary full"
+          style="margin-top:9px" type="button"
+          onclick="forgotPassword()">
+          نسيت كلمة المرور؟
+        </button>
+      </form>
+
+      <p id="authMessage" class="muted small" aria-live="polite"></p>
+
+      <p class="muted small">
+        يتم التحقق من الحساب عبر Supabase.
+        قد تحتاج إلى تأكيد بريدك الإلكتروني.
+      </p>
+    </div>
+  </section>
+
+  <!-- شاشة الترحيب -->
+
+  <section id="intro" class="intro hidden">
+    <div>
+      <div class="alien">👽</div>
+      <h1>مرحبًا بك في مجرة التعلّم</h1>
+      <p>رحلتك الجديدة تبدأ الآن ✨</p>
+    </div>
+  </section>
+
+  <!-- ========================================
+       القسم الثالث: التطبيق بعد تسجيل الدخول
+  ========================================= -->
+
+  <section id="app" class="hidden">
+    <header class="top">
+      <div>
+        <b>🪐 مجرة التعلّم</b>
+        <div id="greeting" class="muted small"></div>
+      </div>
+
+      <div class="row">
+        <button class="coin" onclick="openStore()">
+          ✦ <span id="coins">20</span>
+        </button>
+
+        <span class="streak">
+          🔥 <span id="streak">0</span>
+        </span>
+
+        <button class="btn secondary" onclick="toggleTheme()"
+          aria-label="تغيير المظهر">
+          ◐
+        </button>
+      </div>
+    </header>
+
+    <main id="main"></main>
+
+    <nav class="nav" aria-label="القائمة الرئيسية">
+      <button data-page="home" onclick="goPage('home')">
+        <b>⌂</b>الرئيسية
+      </button>
+
+      <button data-page="planets" onclick="goPage('planets')">
+        <b>🪐</b>الكواكب
+      </button>
+
+      <button data-page="stats" onclick="goPage('stats')">
+        <b>▥</b>الإحصاءات
+      </button>
+
+      <button data-page="calendar" onclick="goPage('calendar')">
+        <b>▦</b>الجدول
+      </button>
+
+      <button data-page="messages" onclick="goPage('messages')">
+        <b>▱</b>المحادثات
+      </button>
+
+      <button data-page="profile" onclick="goPage('profile')">
+        <b>☺</b>ملفي
+      </button>
+    </nav>
+  </section>
+
+  <div id="modalRoot"></div>
+
+  <!-- ========================================
+       القسم الرابع: مكتبة Supabase والإعدادات
+  ========================================= -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    "use strict";
+
+    /*
+      إعدادات مشروع Supabase الحالي.
+      استخدمي Publishable key أو anon key فقط.
+      لا تضعي service_role أو Secret key هنا.
+    */
+
+    const SUPABASE_URL =
+      "https://zlrohdqstykwcpqkvawd.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_2bS6caXTWH0hZ_ZQtmPtIA_eOFAsAp6";
+
+    let supabaseClient = null;
+
+    try {
+      if (window.supabase) {
+        supabaseClient = window.supabase.createClient(
+          SUPABASE_URL,
+          SUPABASE_KEY
+        );
+      }
+    } catch (error) {
+      console.error("Supabase initialization error:", error);
+    }
+
+    // اختصار الوصول إلى عناصر الصفحة.
+
+    const $ = (id) => document.getElementById(id);
+
+    // حالة التطبيق الحالية.
+
+    let currentUser = null;
+    let authMode = "login";
+    let currentPage = "home";
+    let activePlanet = "english";
+    let englishTab = "lessons";
+    let focusTimer = null;
+    let focusRemaining = 0;
+    let focusTotal = 0;
+    let focusRunning = false;
+    let calendarMonth = new Date();
+    let selectedEmoji = "🪐";
+    let selectedCost = 0;
+    let selectedEnvironment = "home";
+    let selectedAvatar = "👩🏻‍🚀";
+    let currentQuizIndex = 0;
+    let currentQuizScore = 0;
+
+    // ========================================
+    // القسم الخامس: بيانات التطبيق الافتراضية
+    // ========================================
+
+    const defaultPlanets = () => [
+      {
+        id: "english",
+        name: "تعلم اللغة الإنجليزية",
+        emoji: "🌍",
+        type: "english",
+        progress: 0,
+        minutes: 0
+      },
+      {
+        id: "math",
+        name: "الرياضيات",
+        emoji: "🪐",
+        type: "subject",
+        progress: 0,
+        minutes: 0
+      },
+      {
+        id: "science",
+        name: "العلوم",
+        emoji: "🔵",
+        type: "subject",
+        progress: 0,
+        minutes: 0
+      }
+    ];
+
+    function createDefaultState() {
+      return {
+        name: "مستكشف المجرة",
+        email: "",
+        avatar: "👩🏻‍🚀",
+        coins: 20,
+        streak: 0,
+        lastStudyDate: "",
+        totalMinutes: 0,
+        theme: "dark",
+        planets: defaultPlanets(),
+        words: [],
+        mistakes: [],
+        events: [],
+        sessions: [],
+        built: [],
+        friends: [],
+        messages: [],
+        completedLessons: [],
+        englishStarted: false,
+        level: "من الصفر",
+        unlockedItems: [],
+        city: "مكة المكرمة"
+      };
+    }
+
+    let state = createDefaultState();
+
+    // لكل مستخدم مفتاح محلي منفصل.
+
+    function storageKey() {
+      return "learningGalaxy_" + (
+        currentUser?.id || currentUser?.email || "guest"
+      );
+    }
+
+    function loadState() {
+      const fresh = createDefaultState();
+
+      try {
+        const saved = localStorage.getItem(storageKey());
+
+        if (saved) {
+          const parsed = JSON.parse(saved);
+
+          state = {
+            ...fresh,
+            ...parsed
+          };
+        } else {
+          state = fresh;
+        }
+      } catch (error) {
+        console.error("Could not load local progress:", error);
+        state = fresh;
+      }
+
+      if (!Array.isArray(state.planets)) {
+        state.planets = defaultPlanets();
+      }
+
+      document.body.classList.toggle(
+        "light",
+        state.theme === "light"
+      );
+
+      updateHeader();
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(
+          storageKey(),
+          JSON.stringify(state)
+        );
+      } catch (error) {
+        console.error("Could not save progress:", error);
+        showToast("تعذّر حفظ البيانات على هذا الجهاز.");
+      }
+
+      updateHeader();
+    }
+
+    function updateHeader() {
+      if ($("coins")) {
+        $("coins").textContent = state.coins;
+      }
+
+      if ($("streak")) {
+        $("streak").textContent = state.streak;
+      }
+
+      if ($("greeting")) {
+        $("greeting").textContent =
+          "أهلًا، " + state.name;
+      }
+    }
+
+    // ========================================
+    // القسم السادس: أدوات مساعدة
+    // ========================================
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(
+        /[&<>"']/g,
+        (char) => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        })[char]
+      );
+    }
+
+    function showToast(message) {
+      const toast = $("toast");
+
+      toast.textContent = message;
+      toast.classList.remove("hidden");
+
+      clearTimeout(showToast.timeout);
+
+      showToast.timeout = setTimeout(() => {
+        toast.classList.add("hidden");
+      }, 3000);
+    }
+
+    function formatMinutes(value) {
+      const minutes = Math.round(Number(value) || 0);
+
+      if (minutes < 60) {
+        return minutes + " دقيقة";
+      }
+
+      const hours = Math.floor(minutes / 60);
+      const rest = minutes % 60;
+
+      return hours + " ساعة " + rest + " دقيقة";
+    }
+
+    function formatClock(seconds) {
+      const safeSeconds = Math.max(
+        0,
+        Math.floor(Number(seconds) || 0)
+      );
+
+      const minutes = Math.floor(safeSeconds / 60);
+      const remainder = safeSeconds % 60;
+
+      return String(minutes).padStart(2, "0") +
+        ":" +
+        String(remainder).padStart(2, "0");
+    }
+
+    function speakEnglish(text) {
+      if (!("speechSynthesis" in window)) {
+        showToast("الصوت غير متاح في هذا المتصفح.");
+        return;
+      }
+
+      const utterance = new SpeechSynthesisUtterance(text);
+
+      utterance.lang = "en-US";
+      utterance.rate = 0.85;
+
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function showModal(content) {
+      $("modalRoot").innerHTML = `
+        <div class="modalbg" id="modalBackground">
+          <div class="modal" role="dialog" aria-modal="true">
+            ${content}
+          </div>
+        </div>
+      `;
+
+      $("modalBackground").addEventListener("click", (event) => {
+        if (event.target.id === "modalBackground") {
+          closeModal();
+        }
+      });
+    }
+
+    function closeModal() {
+      $("modalRoot").innerHTML = "";
+    }
+
+    // ========================================
+    // القسم السابع: تسجيل الدخول الحقيقي
+    // ========================================
+
+    function setAuthMode(mode) {
+      authMode = mode;
+
+      $("loginTab").classList.toggle(
+        "active",
+        mode === "login"
+      );
+
+      $("signupTab").classList.toggle(
+        "active",
+        mode === "signup"
+      );
+
+      $("nameField").classList.toggle(
+        "hidden",
+        mode !== "signup"
+      );
+
+      $("forgotButton").classList.toggle(
+        "hidden",
+        mode !== "login"
+      );
+
+      $("authButton").textContent =
+        mode === "login"
+          ? "دخول إلى المجرة"
+          : "إنشاء حساب";
+
+      $("authMessage").textContent = "";
+    }
+
+    $("authForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const email = $("email").value.trim();
+      const password = $("password").value;
+      const name = $("username").value.trim();
+
+      const button = $("authButton");
+
+      button.disabled = true;
+      $("authMessage").textContent = "جارٍ التحقق من الحساب...";
+
+      try {
+        if (!supabaseClient) {
+          throw new Error(
+            "تعذّر الاتصال بخدمة الحسابات. حدّثي الصفحة وحاولي مجددًا."
+          );
+        }
+
+        if (authMode === "signup") {
+          const result = await supabaseClient.auth.signUp({
+            email,
+            password,
+            options: {
+              data: {
+                display_name: name || email.split("@")[0]
+              }
+            }
+          });
+
+          if (result.error) {
+            throw result.error;
+          }
+
+          if (!result.data.session) {
+            $("authMessage").textContent =
+              "تم إرسال طلب إنشاء الحساب. " +
+              "تحققي من بريدك الإلكتروني لتأكيد الحساب، " +
+              "ثم ارجعي وسجّلي الدخول.";
+
+            return;
+          }
+
+          currentUser = result.data.user;
+
+          loadState();
+
+          state.email = email;
+          state.name =
+            name ||
+            currentUser.user_metadata?.display_name ||
+            email.split("@")[0];
+
+          saveState();
+
+          enterApp(true);
+          return;
+        }
+
+        const result = await supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
+
+        if (result.error) {
+          throw result.error;
+        }
+
+        currentUser = result.data.user;
+
+        loadState();
+
+        state.email = email;
+
+        if (state.name === "مستكشف المجرة") {
+          state.name =
+            currentUser.user_metadata?.display_name ||
+            email.split("@")[0];
+        }
+
+        saveState();
+        enterApp(true);
+
+      } catch (error) {
+        console.error("Authentication error:", error);
+
+        $("authMessage").textContent =
+          error.message ||
+          "حدث خطأ أثناء تسجيل الدخول. حاولي مرة أخرى.";
+
+      } finally {
+        button.disabled = false;
+      }
+    });
+
+    async function forgotPassword() {
+      const email = $("email").value.trim();
+
+      if (!email) {
+        $("authMessage").textContent =
+          "اكتبي بريدك الإلكتروني أولًا.";
+        $("email").focus();
+        return;
+      }
+
+      try {
+        const { error } =
+          await supabaseClient.auth.resetPasswordForEmail(
+            email,
+            {
+              redirectTo: window.location.href
+            }
+          );
+
+        if (error) {
+          throw error;
+        }
+
+        $("authMessage").textContent =
+          "إذا كان البريد مسجلًا، فستصلك رسالة لاستعادة كلمة المرور.";
+
+      } catch (error) {
+        $("authMessage").textContent =
+          error.message || "تعذّر إرسال رسالة الاستعادة.";
+      }
+    }
+
+    async function bootApp() {
+      if (!supabaseClient) {
+        return;
+      }
+
+      try {
+        const { data, error } =
+          await supabaseClient.auth.getSession();
+
+        if (error) {
+          throw error;
+        }
+
+        if (data.session) {
+          currentUser = data.session.user;
+
+          loadState();
+
+          state.email = currentUser.email || "";
+
+          if (state.name === "مستكشف المجرة") {
+            state.name =
+              currentUser.user_metadata?.display_name ||
+              currentUser.email?.split("@")[0] ||
+              state.name;
+          }
+
+          saveState();
+          enterApp(false);
+        }
+
+      } catch (error) {
+        console.error("Session loading error:", error);
+      }
+    }
+
+    function enterApp(showIntro) {
+      $("auth").classList.add("hidden");
+      $("app").classList.remove("hidden");
+
+      if (showIntro) {
+        $("intro").classList.remove("hidden");
+
+        setTimeout(() => {
+          $("intro").classList.add("hidden");
+        }, 1800);
+      }
+
+      goPage("home");
+    }
+
+    async function logout() {
+      stopFocusTimer();
+
+      try {
+        if (supabaseClient) {
+          const { error } =
+            await supabaseClient.auth.signOut();
+
+          if (error) {
+            throw error;
+          }
+        }
+
+        currentUser = null;
+
+        $("app").classList.add("hidden");
+        $("auth").classList.remove("hidden");
+
+        $("password").value = "";
+        $("authMessage").textContent = "";
+
+        setAuthMode("login");
+
+      } catch (error) {
+        showToast(error.message || "تعذّر تسجيل الخروج.");
+      }
+    }
+
+    // ========================================
+    // القسم الثامن: التنقل بين صفحات التطبيق
+    // ========================================
+
+    function goPage(pageName) {
+      currentPage = pageName;
+
+      document.querySelectorAll(".nav button").forEach((button) => {
+        button.classList.toggle(
+          "active",
+          button.dataset.page === pageName
+        );
+      });
+
+      renderPage();
+    }
+
+    function toggleTheme() {
+      state.theme =
+        state.theme === "light" ? "dark" : "light";
+
+      document.body.classList.toggle(
+        "light",
+        state.theme === "light"
+      );
+
+      saveState();
+    }
+
+    // ========================================
+    // القسم التاسع: الرئيسية والكواكب
+    // ========================================
+
+    function planetCard(planet) {
+      return `
+        <div class="card planet">
+          <div class="planet-art">${planet.emoji}</div>
+
+          <div>
+            <h3>${escapeHTML(planet.name)}</h3>
+
+            <div class="progress">
+              <span style="width:${Math.min(
+                100,
+                Math.max(0, planet.progress || 0)
+              )}%"></span>
+            </div>
+
+            <p class="muted small">
+              ${planet.progress || 0}% مكتمل
+              · ${formatMinutes(planet.minutes)}
+            </p>
+
+            <button class="btn"
+              onclick="openPlanet('${planet.id}')">
+              دخول الكوكب
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderHome() {
+      return `
+        <section class="hero">
+          <p style="color:var(--blue)">
+            أهلًا بمستكشف المجرة ✨
+          </p>
+
+          <h1>كل يوم، اكتشاف جديد.</h1>
+
+          <p class="muted">
+            اختاري كوكبك وابدئي رحلتك التعليمية.
+          </p>
+
+          <div class="row">
+            <button class="btn"
+              onclick="openPlanet('english')">
+              متابعة التعلّم
+            </button>
+
+            <button class="btn secondary"
+              onclick="openAddPlanet()">
+              ＋ إضافة كوكب
+            </button>
+          </div>
+        </section>
+
+        <div class="grid three">
+          <div class="card">
+            ✦ النقاط
+            <h2>${state.coins}</h2>
+          </div>
+
+          <div class="card">
+            🔥 سلسلة التعلّم
+            <h2>${state.streak} يوم</h2>
+          </div>
+
+          <div class="card">
+            ⏱ وقت التعلّم
+            <h2>${formatMinutes(state.totalMinutes)}</h2>
+          </div>
+        </div>
+
+        <div class="between">
+          <h2>كواكبك 🪐</h2>
+
+          <button class="btn secondary"
+            onclick="goPage('planets')">
+            جميع الكواكب
+          </button>
+        </div>
+
+        <div class="grid three">
+          ${state.planets.map(planetCard).join("")}
+        </div>
+
+        <div class="card">
+          <h2>🎯 هدف اليوم</h2>
+          <p class="muted">
+            ابدئي بجلسة قصيرة، ثم زيدي وقتك تدريجيًا.
+          </p>
+
+          <button class="btn"
+            onclick="openPlanet('english')">
+            ابدأ درسًا
+          </button>
+        </div>
+      `;
+    }
+
+    function renderPlanets() {
+      return `
+        <div class="between">
+          <h1>🪐 الكواكب</h1>
+
+          <button class="btn" onclick="openAddPlanet()">
+            ＋ كوكب جديد
+          </button>
+        </div>
+
+        <p class="muted">
+          خصصي كوكبًا لكل مادة أو مهارة تريدين تعلّمها.
+        </p>
+
+        <div class="grid three">
+          ${state.planets.map(planetCard).join("")}
+        </div>
+      `;
+    }
+
+    function openPlanet(id) {
+      activePlanet = id;
+
+      const planet = state.planets.find(
+        (item) => item.id === id
+      );
+
+      if (!planet) {
+        showToast("لم يتم العثور على هذا الكوكب.");
+        return;
+      }
+
+      if (planet.type === "english") {
+        currentPage = "planet";
+        renderEnglishPlanet();
+
+        if (!state.englishStarted) {
+          showStartEnglish();
+        }
+
+        return;
+      }
+
+      currentPage = "planet";
+      renderWorldPlanet();
+    }
+
+    // ========================================
+    // القسم العاشر: إنشاء كوكب جديد
+    // ========================================
+
+    function openAddPlanet() {
+      selectedEmoji = "🪐";
+      selectedCost = 0;
+
+      const options = [
+        ["🪐", 0],
+        ["🌍", 0],
+        ["🔴", 0],
+        ["🟣", 10],
+        ["🟢", 10],
+        ["🌕", 15],
+        ["🌈", 20],
+        ["💫", 25]
+      ];
+
+      showModal(`
+        <h2>إنشاء كوكب جديد 🚀</h2>
+
+        <div class="field">
+          <label for="planetName">اسم المادة أو المهارة</label>
+          <input id="planetName"
+            placeholder="مثال: الكيمياء أو التاريخ">
+        </div>
+
+        <p class="muted small">
+          بعض أشكال الكواكب تحتاج نقاطًا.
+        </p>
+
+        <div class="choicegrid">
+          ${options.map((option, index) => `
+            <button class="choice"
+              id="planetChoice${index}"
+              onclick="choosePlanetEmoji('${option[0]}',${option[1]},${index})">
+              ${option[0]}
+              <br>
+              <small>${option[1]} ✦</small>
+            </button>
+          `).join("")}
+        </div>
+
+        <button class="btn full"
+          style="margin-top:12px"
+          onclick="createPlanet()">
+          إنشاء الكوكب
+        </button>
+      `);
+    }
+
+    function choosePlanetEmoji(emoji, cost, index) {
+      selectedEmoji = emoji;
+      selectedCost = cost;
+
+      document.querySelectorAll('[id^="planetChoice"]').forEach(
+        (button) => {
+          button.style.borderColor = "var(--line)";
+        }
+      );
+
+      const selected = $("planetChoice" + index);
+
+      if (selected) {
+        selected.style.borderColor = "var(--purple)";
+      }
+    }
+
+    function createPlanet() {
+      const name = $("planetName").value.trim();
+
+      if (!name) {
+        showToast("اكتبي اسم الكوكب أولًا.");
+        return;
+      }
+
+      if (state.coins < selectedCost) {
+        showToast("نقاطك لا تكفي لهذا الشكل.");
+        return;
+      }
+
+      state.coins -= selectedCost;
+
+      const id = "planet_" + Date.now();
+
+      state.planets.push({
+        id,
+        name,
+        emoji: selectedEmoji,
+        type: "subject",
+        progress: 0,
+        minutes: 0
+      });
+
+      saveState();
+      closeModal();
+      goPage("planets");
+
+      showToast("تم إنشاء كوكبك الجديد! 🪐");
+    }
+
+    // ========================================
+    // القسم الحادي عشر: رحلة الإنجليزية
+    // ========================================
+
+    const englishUnits = [
+      {
+        title: "البداية والتعارف",
+        description: "الحروف والتحيات وتقديم نفسك",
+        english: "Hello",
+        arabic: "مرحبًا",
+        choices: ["مرحبًا", "مدرسة", "قلم"],
+        correct: 0
+      },
+      {
+        title: "الأشياء من حولي",
+        description: "الأشياء والألوان",
+        english: "Book",
+        arabic: "كتاب",
+        choices: ["نافذة", "كتاب", "سيارة"],
+        correct: 1
+      },
+      {
+        title: "الأرقام والأيام",
+        description: "الأرقام والوقت",
+        english: "Three",
+        arabic: "ثلاثة",
+        choices: ["اثنان", "أربعة", "ثلاثة"],
+        correct: 2
+      },
+      {
+        title: "عائلتي وأصدقائي",
+        description: "الأشخاص والعلاقات",
+        english: "Family",
+        arabic: "عائلة",
+        choices: ["عائلة", "شارع", "حقيبة"],
+        correct: 0
+      },
+      {
+        title: "البيت والغرف",
+        description: "الأثاث والغرف",
+        english: "Door",
+        arabic: "باب",
+        choices: ["باب", "ماء", "قلم"],
+        correct: 0
+      },
+      {
+        title: "الطعام والشراب",
+        description: "الوجبات والطلبات",
+        english: "Water",
+        arabic: "ماء",
+        choices: ["كتاب", "ماء", "بيت"],
+        correct: 1
+      },
+      {
+        title: "الأماكن والاتجاهات",
+        description: "السوق والشارع",
+        english: "Market",
+        arabic: "سوق",
+        choices: ["سوق", "مدرسة", "حديقة"],
+        correct: 0
+      },
+      {
+        title: "روتيني اليومي",
+        description: "الأفعال والوقت",
+        english: "Study",
+        arabic: "يدرس",
+        choices: ["ينام", "يلعب", "يدرس"],
+        correct: 2
+      },
+      {
+        title: "الهوايات والطقس",
+        description: "وصف الأنشطة والطقس",
+        english: "Sunny",
+        arabic: "مشمس",
+        choices: ["ممطر", "مشمس", "بارد"],
+        correct: 1
+      },
+      {
+        title: "مراجعة وتطبيق",
+        description: "مراجعة عامة",
+        english: "I can learn",
+        arabic: "أستطيع التعلّم",
+        choices: [
+          "أستطيع التعلّم",
+          "أحب النوم",
+          "أنا في البيت"
+        ],
+        correct: 0
+      }
+    ];
+
+    function showStartEnglish() {
+      showModal(`
+        <h2>مرحبًا بك في كوكب الإنجليزية 🌍</h2>
+
+        <p class="muted">
+          اختاري نقطة البداية المناسبة لك.
+        </p>
+
+        <div class="choicegrid">
+          <button class="choice"
+            onclick="beginEnglish('من الصفر')">
+            🌱 أبدأ من الصفر
+          </button>
+
+          <button class="choice"
+            onclick="startPlacementTest()">
+            🧭 أحدد مستواي
+          </button>
+        </div>
+      `);
+    }
+
+    function beginEnglish(level) {
+      state.englishStarted = true;
+      state.level = level;
+
+      saveState();
+      closeModal();
+      renderEnglishPlanet();
+    }
+
+    const placementQuestions = [
+      {
+        q: "اختر التحية الصحيحة",
+        options: ["Hello", "Blue", "Run"],
+        answer: 0
+      },
+      {
+        q: "I ___ a student.",
+        options: ["am", "is", "are"],
+        answer: 0
+      },
+      {
+        q: "ما جمع book؟",
+        options: ["bookes", "books", "book's"],
+        answer: 1
+      },
+      {
+        q: "She ___ to school.",
+        options: ["go", "goes", "going"],
+        answer: 1
+      },
+      {
+        q: "ما ماضي play؟",
+        options: ["played", "plays", "playing"],
+        answer: 0
+      }
+    ];
+
+    function startPlacementTest() {
+      currentQuizIndex = 0;
+      currentQuizScore = 0;
+      showPlacementQuestion();
+    }
+
+    function showPlacementQuestion() {
+      if (currentQuizIndex >= placementQuestions.length) {
+        state.englishStarted = true;
+
+        state.level =
+          currentQuizScore <= 1
+            ? "مبتدئ"
+            : currentQuizScore <= 3
+              ? "A1"
+              : "A2";
+
+        saveState();
+        closeModal();
+        renderEnglishPlanet();
+
+        showToast("نقطة البداية المقترحة: " + state.level);
+        return;
+      }
+
+      const question = placementQuestions[currentQuizIndex];
+
+      showModal(`
+        <p class="muted small">
+          السؤال ${currentQuizIndex + 1}
+          من ${placementQuestions.length}
+        </p>
+
+        <h2>${question.q}</h2>
+
+        <div class="choicegrid">
+          ${question.options.map((option, index) => `
+            <button class="choice"
+              onclick="answerPlacement(${index})">
+              ${option}
+            </button>
+          `).join("")}
+        </div>
+      `);
+    }
+
+    function answerPlacement(index) {
+      if (
+        index ===
+        placementQuestions[currentQuizIndex].answer
+      ) {
+        currentQuizScore++;
+      }
+
+      currentQuizIndex++;
+      showPlacementQuestion();
+    }
+
+    function renderEnglishPlanet() {
+      const planet = state.planets.find(
+        (item) => item.id === "english"
+      );
+
+      if (!planet) {
+        return;
+      }
+
+      $("main").innerHTML = `
+        <div class="between">
+          <h1>🌍 ${escapeHTML(planet.name)}</h1>
+
+          <button class="btn secondary"
+            onclick="goPage('planets')">
+            رجوع للكواكب
+          </button>
+        </div>
+
+        <div class="subnav">
+          <button class="${englishTab === "lessons" ? "active" : ""}"
+            onclick="englishTab='lessons';renderEnglishPlanet()">
+            📚 الدروس
+          </button>
+
+          <button class="${englishTab === "progress" ? "active" : ""}"
+            onclick="englishTab='progress';renderEnglishPlanet()">
+            📈 التقدم
+          </button>
+
+          <button class="${englishTab === "tools" ? "active" : ""}"
+            onclick="englishTab='tools';renderEnglishPlanet()">
+            🧰 الأدوات
+          </button>
+        </div>
+
+        ${englishTab === "lessons"
+          ? renderEnglishLessons()
+          : englishTab === "progress"
+            ? renderEnglishProgress()
+            : renderEnglishTools()}
+      `;
+    }
+
+    function renderEnglishLessons() {
+      const completed = state.completedLessons.length;
+
+      return `
+        <div class="card">
+          <h2>رحلتك التعليمية 🚀</h2>
+
+          <p class="muted">
+            المستوى الحالي: ${escapeHTML(state.level)}
+          </p>
+
+          <div class="progress">
+            <span style="width:${completed * 10}%"></span>
+          </div>
+
+          <p class="small muted">
+            الوحدات المكتملة: ${completed}/10
+          </p>
+        </div>
+
+        ${englishUnits.map((unit, index) => `
+          <div class="lesson">
+            <div class="grow">
+              <b>
+                ${index + 1}. ${escapeHTML(unit.title)}
+              </b>
+
+              <div class="muted small">
+                ${escapeHTML(unit.description)}
+              </div>
+            </div>
+
+            <button class="btn"
+              onclick="openLesson(${index})">
+              ${state.completedLessons.includes(index)
+                ? "مراجعة"
+                : "ابدأ"}
+            </button>
+          </div>
+        `).join("")}
+      `;
+    }
+
+    function renderEnglishProgress() {
+      const completed = state.completedLessons.length;
+
+      return `
+        <div class="card">
+          <h2>تقدمك في الإنجليزية</h2>
+
+          <div class="progress">
+            <span style="width:${completed * 10}%"></span>
+          </div>
+
+          <h3>${completed}/10 وحدات مكتملة</h3>
+
+          <p>الكلمات المحفوظة: ${state.words.length}</p>
+          <p>الأخطاء المسجلة: ${state.mistakes.length}</p>
+          <p>وقت التعلّم: ${formatMinutes(state.totalMinutes)}</p>
+        </div>
+      `;
+    }
+
+    function renderEnglishTools() {
+      const tools = [
+        ["training", "🧩", "التدريبات"],
+        ["letters", "🔤", "الحروف"],
+        ["talk", "🎙️", "محادثة تدريبية"],
+        ["podcast", "🎧", "استماع"],
+        ["writing", "✍️", "الكتابة"],
+        ["words", "🗂️", "إضافة كلمات"],
+        ["vocab", "📚", "حصيلتي اللغوية"],
+        ["mistakes", "🧠", "أخطائي"],
+        ["environment", "🏠", "البيئة التفاعلية"]
+      ];
+
+      return `
+        <div class="grid three">
+          ${tools.map((tool) => `
+            <button class="card center"
+              onclick="openFeature('${tool[0]}')">
+              <div style="font-size:2rem">${tool[1]}</div>
+              <b>${tool[2]}</b>
+            </button>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function openLesson(index) {
+      const unit = englishUnits[index];
+
+      showModal(`
+        <p class="muted small">
+          الوحدة ${index + 1} من ${englishUnits.length}
+        </p>
+
+        <h2>${escapeHTML(unit.title)}</h2>
+
+        <p>${escapeHTML(unit.description)}</p>
+
+        <div class="card center">
+          <h2>${escapeHTML(unit.english)}</h2>
+          <p>${escapeHTML(unit.arabic)}</p>
+
+          <button class="btn secondary"
+            onclick="speakEnglish('${unit.english}')">
+            🔊 استمع للنطق
+          </button>
+        </div>
+
+        <h3>اختر المعنى الصحيح</h3>
+
+        <div class="choicegrid">
+          ${unit.choices.map((choice, choiceIndex) => `
+            <button class="choice"
+              onclick="checkLessonAnswer(${index},${choiceIndex})">
+              ${escapeHTML(choice)}
+            </button>
+          `).join("")}
+        </div>
+      `);
+    }
+
+    function checkLessonAnswer(unitIndex, answerIndex) {
+      const unit = englishUnits[unitIndex];
+
+      if (answerIndex !== unit.correct) {
+        state.mistakes.unshift({
+          question: unit.english,
+          answer: unit.choices[answerIndex],
+          correct: unit.arabic
+        });
+
+        saveState();
+
+        showToast("حاولي مرة أخرى. المعنى الصحيح: " + unit.arabic);
+        return;
+      }
+
+      if (!state.completedLessons.includes(unitIndex)) {
+        state.completedLessons.push(unitIndex);
+        state.coins += 10;
+        state.totalMinutes += 5;
+
+        const planet = state.planets.find(
+          (item) => item.id === "english"
+        );
+
+        if (planet) {
+          planet.minutes += 5;
+          planet.progress = Math.round(
+            state.completedLessons.length * 10
+          );
+        }
+
+        recordStudyDay();
+      }
+
+      saveState();
+      closeModal();
+      renderEnglishPlanet();
+
+      showToast("ممتاز! ربحتِ 10 نقاط ✦");
+    }
+
+    // ========================================
+    // القسم الثاني عشر: أدوات الإنجليزية
+    // ========================================
+
+    function openFeature(featureName) {
+      const titles = {
+        training: "التدريبات",
+        letters: "الحروف الإنجليزية",
+        talk: "محادثة تدريبية",
+        podcast: "تدريب الاستماع",
+        writing: "تدريب الكتابة",
+        words: "إضافة كلمة",
+        vocab: "حصيلتي اللغوية",
+        mistakes: "أخطائي",
+        environment: "البيئة التفاعلية"
+      };
+
+      let content = "";
+
+      if (featureName === "training") {
+        content = `
+          <p class="muted">
+            اختاري نوع التدريب الذي تريدين مراجعته.
+          </p>
+
+          <div class="choicegrid">
+            <button class="choice" onclick="openMiniQuiz('grammar')">
+              قواعد
+            </button>
+
+            <button class="choice" onclick="openMiniQuiz('listening')">
+              استماع
+            </button>
+
+            <button class="choice" onclick="openMiniQuiz('writing')">
+              كتابة
+            </button>
+
+            <button class="choice" onclick="openMiniQuiz('vocab')">
+              مفردات
+            </button>
+          </div>
+        `;
+      }
+
+      if (featureName === "letters") {
+        content = `
+          <p class="muted">
+            اضغطي على الحرف لسماع اسمه.
+          </p>
+
+          <div class="lettergrid">
+            ${"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => `
+              <button class="letter"
+                onclick="speakEnglish('${letter.toLowerCase()}')">
+                ${letter}
+                <small>${letter.toLowerCase()}</small>
+              </button>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      if (featureName === "talk") {
+        content = `
+          <div class="card">
+            <b>المعلّم الفضائي 👽</b>
+            <p>Hello! What is your name?</p>
+            <p class="muted small">مرحبًا! ما اسمك؟</p>
+          </div>
+
+          <div class="field">
+            <label for="talkInput">اكتبي إجابتك بالإنجليزية</label>
+            <input id="talkInput" placeholder="My name is Sara.">
+          </div>
+
+          <button class="btn" onclick="replyToTalk()">
+            إرسال
+          </button>
+
+          <div id="talkReply"></div>
+
+          <p class="muted small">
+            هذه محادثة تدريبية مبسطة وليست ذكاءً اصطناعيًا مباشرًا.
+          </p>
+        `;
+      }
+
+      if (featureName === "podcast") {
+        content = `
+          <h3>استمعي إلى الجملة</h3>
+
+          <div class="card">
+            <p>Hello. I am at home.</p>
+            <p>I read a book and drink water.</p>
+
+            <button class="btn secondary"
+              onclick="speakEnglish('Hello. I am at home. I read a book and drink water.')">
+              🎧 تشغيل الصوت
+            </button>
+          </div>
+
+          <div class="field">
+            <label for="podcastAnswer">أين الشخص؟</label>
+            <select id="podcastAnswer">
+              <option value="">اختاري الإجابة</option>
+              <option value="home">في البيت</option>
+              <option value="school">في المدرسة</option>
+              <option value="market">في السوق</option>
+            </select>
+          </div>
+
+          <button class="btn"
+            onclick="checkPodcast()">
+            تحقق
+          </button>
+        `;
+      }
+
+      if (featureName === "writing") {
+        content = `
+          <button class="btn secondary"
+            onclick="pickWritingTopic()">
+            🎡 اختر موضوعًا
+          </button>
+
+          <p id="writingTopic">اختاري موضوعًا للكتابة.</p>
+
+          <div class="field">
+            <label for="writingText">اكتبي بالإنجليزية</label>
+            <textarea id="writingText"
+              placeholder="My name is..."></textarea>
+          </div>
+
+          <button class="btn" onclick="reviewWriting()">
+            مراجعة أولية
+          </button>
+
+          <div id="writingFeedback"></div>
+        `;
+      }
+
+      if (featureName === "words") {
+        content = `
+          <div class="field">
+            <label for="newWord">الكلمة بالإنجليزية</label>
+            <input id="newWord" placeholder="apple">
+          </div>
+
+          <div class="field">
+            <label for="newMeaning">المعنى بالعربية</label>
+            <input id="newMeaning" placeholder="تفاحة">
+          </div>
+
+          <button class="btn" onclick="addVocabularyWord()">
+            إضافة الكلمة
+          </button>
+        `;
+      }
+
+      if (featureName === "vocab") {
+        content = state.words.length
+          ? state.words.map((word, index) => `
+              <div class="lesson">
+                <div class="grow">
+                  <b>${escapeHTML(word.english)}</b>
+                  — ${escapeHTML(word.arabic)}
+                </div>
+
+                <button class="btn secondary"
+                  onclick="speakEnglish('${word.english.replace(/'/g, "\\'")}')">
+                  🔊
+                </button>
+
+                <button class="btn danger"
+                  onclick="deleteVocabularyWord(${index})">
+                  حذف
+                </button>
+              </div>
+            `).join("")
+          : "<p>لم تضيفي كلمات حتى الآن.</p>";
+      }
+
+      if (featureName === "mistakes") {
+        content = state.mistakes.length
+          ? state.mistakes.map((mistake, index) => `
+              <div class="event">
+                <b>${escapeHTML(mistake.question)}</b>
+                <p>إجابتك: ${escapeHTML(mistake.answer)}</p>
+                <p>الصحيح: ${escapeHTML(mistake.correct)}</p>
+
+                <button class="btn secondary"
+                  onclick="deleteMistake(${index})">
+                  تمت المراجعة
+                </button>
+              </div>
+            `).join("")
+          : "<p>لا توجد أخطاء محفوظة حاليًا.</p>";
+      }
+
+      if (featureName === "environment") {
+        content = `
+          <div class="field">
+            <label for="environmentSelect">اختاري المكان</label>
+
+            <select id="environmentSelect"
+              onchange="selectedEnvironment=this.value;openFeature('environment')">
+              <option value="home"
+                ${selectedEnvironment === "home" ? "selected" : ""}>
+                البيت
+              </option>
+
+              <option value="market"
+                ${selectedEnvironment === "market" ? "selected" : ""}>
+                السوق
+              </option>
+
+              <option value="street"
+                ${selectedEnvironment === "street" ? "selected" : ""}>
+                الشارع
+              </option>
+            </select>
+          </div>
+
+          <div class="environment">
+            ${environmentObjects().map((item, index) => `
+              <button
+                style="left:${8 + index * 23}%;top:${20 + (index % 2) * 30}%"
+                onclick="learnEnvironmentWord('${item[1]}','${item[2]}')">
+                ${item[0]}
+              </button>
+            `).join("")}
+
+            <div class="environment-label">
+              اضغطي على الشيء لتتعلمي اسمه بالإنجليزية.
+            </div>
+          </div>
+        `;
+      }
+
+      showModal(`
+        <div class="between">
+          <h2>${titles[featureName] || "التعلّم"}</h2>
+
+          <button class="btn secondary"
+            onclick="closeModal()">
+            ✕
+          </button>
+        </div>
+
+        ${content}
+      `);
+    }
+
+    function environmentObjects() {
+      const environments = {
+        home: [
+          ["🛋️", "sofa", "أريكة"],
+          ["🚪", "door", "باب"],
+          ["🪟", "window", "نافذة"],
+          ["📚", "book", "كتاب"]
+        ],
+        market: [
+          ["🍎", "apple", "تفاحة"],
+          ["🛒", "shopping cart", "عربة تسوق"],
+          ["🥛", "milk", "حليب"],
+          ["🍞", "bread", "خبز"]
+        ],
+        street: [
+          ["🚗", "car", "سيارة"],
+          ["🌳", "tree", "شجرة"],
+          ["🚦", "traffic light", "إشارة مرور"],
+          ["🏠", "house", "منزل"]
+        ]
+      };
+
+      return environments[selectedEnvironment] || environments.home;
+    }
+
+    function learnEnvironmentWord(english, arabic) {
+      showToast(arabic + " — " + english);
+      speakEnglish(english);
+    }
+
+    function replyToTalk() {
+      const value = $("talkInput").value.trim();
+      const isCorrect = /my name is|i am|i'm|hello|hi/i.test(value);
+
+      if (!value) {
+        showToast("اكتبي إجابة أولًا.");
+        return;
+      }
+
+      $("talkReply").innerHTML = isCorrect
+        ? '<div class="card">أحسنتِ! إجابتك مفهومة 👏</div>'
+        : '<div class="card">جرّبي: My name is Sara.</div>';
+
+      if (isCorrect) {
+        state.coins += 2;
+      } else {
+        state.mistakes.unshift({
+          question: "What is your name?",
+          answer: value,
+          correct: "My name is ..."
+        });
+      }
+
+      saveState();
+    }
+
+    function checkPodcast() {
+      const answer = $("podcastAnswer").value;
+
+      if (!answer) {
+        showToast("اختاري إجابة أولًا.");
+        return;
+      }
+
+      if (answer === "home") {
+        state.coins += 3;
+        saveState();
+        showToast("إجابة صحيحة! +3 نقاط ✦");
+      } else {
+        showToast("حاولي مرة أخرى.");
+      }
+    }
+
+    const writingTopics = [
+      "My family",
+      "My school",
+      "My favorite food",
+      "My daily routine",
+      "My city",
+      "My room"
+    ];
+
+    function pickWritingTopic() {
+      const randomIndex = Math.floor(
+        Math.random() * writingTopics.length
+      );
+
+      $("writingTopic").textContent =
+        "اكتبي عن: " + writingTopics[randomIndex];
+    }
+
+    function reviewWriting() {
+      const text = $("writingText").value.trim();
+
+      if (!text) {
+        showToast("اكتبي جملة أولًا.");
+        return;
+      }
+
+      const feedback = [];
+
+      if (!/^[A-Z]/.test(text)) {
+        feedback.push("ابدئي بحرف كبير.");
+      }
+
+      if (!/[.!?]$/.test(text)) {
+        feedback.push("أضيفي نقطة أو علامة ترقيم في النهاية.");
+      }
+
+      if (/\bi am\b/.test(text)) {
+        feedback.push("تذكري أن I تُكتب دائمًا بحرف كبير.");
+      }
+
+      $("writingFeedback").innerHTML = `
+        <div class="card">
+          ${feedback.length
+            ? feedback.map(escapeHTML).join("<br>")
+            : "بداية جميلة! راجعي الإملاء وترتيب الجمل."}
+
+          <p class="muted small">
+            هذه مراجعة أولية وليست تصحيحًا كاملًا بالذكاء الاصطناعي.
+          </p>
+        </div>
+      `;
+
+      state.coins += 2;
+      saveState();
+    }
+
+    function addVocabularyWord() {
+      const english = $("newWord").value.trim();
+      const arabic = $("newMeaning").value.trim();
+
+      if (!english || !arabic) {
+        showToast("اكتبي الكلمة ومعناها.");
+        return;
+      }
+
+      state.words.push({ english, arabic });
+
+      saveState();
+      openFeature("vocab");
+      showToast("تمت إضافة الكلمة 📚");
+    }
+
+    function deleteVocabularyWord(index) {
+      state.words.splice(index, 1);
+      saveState();
+      openFeature("vocab");
+    }
+
+    function deleteMistake(index) {
+      state.mistakes.splice(index, 1);
+      saveState();
+      openFeature("mistakes");
+    }
+
+    // ========================================
+    // القسم الثالث عشر: التدريبات القصيرة
+    // ========================================
+
+    const miniQuizzes = {
+      grammar: {
+        question: "She ___ happy.",
+        options: ["is", "are", "am"],
+        answer: 0,
+        correctText: "She is happy."
+      },
+      listening: {
+        question: "استمعي ثم اختاري الكلمة.",
+        options: ["apple", "table", "water"],
+        answer: 0,
+        correctText: "apple"
+      },
+      writing: {
+        question: "أي جملة صحيحة؟",
+        options: [
+          "I like apples.",
+          "I likes apples.",
+          "I liking apples."
+        ],
+        answer: 0,
+        correctText: "I like apples."
+      },
+      vocab: {
+        question: "ما معنى water؟",
+        options: ["ماء", "نافذة", "طريق"],
+        answer: 0,
+        correctText: "ماء"
+      }
+    };
+
+    function openMiniQuiz(type) {
+      const question = miniQuizzes[type];
+
+      if (!question) {
+        return;
+      }
+
+      showModal(`
+        <h2>تدريب سريع 🧩</h2>
+
+        <p>${question.question}</p>
+
+        ${type === "listening"
+          ? `<button class="btn secondary"
+              onclick="speakEnglish('apple')">
+              🔊 استمع
+            </button>`
+          : ""}
+
+        <div class="choicegrid" style="margin-top:12px">
+          ${question.options.map((option, index) => `
+            <button class="choice"
+              onclick="answerMiniQuiz('${type}',${index})">
+              ${option}
+            </button>
+          `).join("")}
+        </div>
+      `);
+    }
+
+    function answerMiniQuiz(type, index) {
+      const question = miniQuizzes[type];
+
+      if (index === question.answer) {
+        state.coins += 3;
+        saveState();
+
+        closeModal();
+        showToast("إجابة صحيحة! +3 نقاط ✦");
+      } else {
+        showToast("الإجابة الصحيحة: " + question.correctText);
+      }
+    }
+
+    // ========================================
+    // القسم الرابع عشر: عالم التركيز والمؤقت
+    // ========================================
+
+    function renderWorldPlanet() {
+      const planet = state.planets.find(
+        (item) => item.id === activePlanet
+      );
+
+      if (!planet) {
+        goPage("planets");
+        return;
+      }
+
+      $("main").innerHTML = `
+        <div class="between">
+          <h1>${planet.emoji} ${escapeHTML(planet.name)}</h1>
+
+          <button class="btn secondary"
+            onclick="goPage('planets')">
+            رجوع
+          </button>
+        </div>
+
+        <div class="card">
+          <h2>🏗️ ابنِ عالمك مع التعلّم</h2>
+
+          <p class="muted">
+            أكملي جلسة تركيز لتحصلي على نقاط وتضيفي عنصرًا لعالمك.
+          </p>
+
+          <div class="field">
+            <label for="focusDuration">مدة الجلسة</label>
+
+            <select id="focusDuration">
+              <option value="15">15 دقيقة</option>
+              <option value="25" selected>25 دقيقة</option>
+              <option value="45">45 دقيقة</option>
+              <option value="60">60 دقيقة</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="buildChoice">ماذا تريدين أن تبني؟</label>
+
+            <select id="buildChoice">
+              <option value="🌳|حديقة">🌳 حديقة</option>
+              <option value="🏠|بيت">🏠 بيت</option>
+              <option value="🛒|متجر">🛒 متجر</option>
+              <option value="🌊|بحر">🌊 بحر</option>
+              <option value="🏙️|مدينة">🏙️ مدينة</option>
+            </select>
+          </div>
+
+          <h1 id="focusClock" class="center">
+            ${formatClock(focusRemaining || 1500)}
+          </h1>
+
+          <div class="row">
+            <button class="btn" onclick="startFocusTimer()">
+              ▶ ابدأ / تابع
+            </button>
+
+            <button class="btn secondary" onclick="pauseFocusTimer()">
+              إيقاف مؤقت
+            </button>
+
+            <button class="btn danger" onclick="finishFocusTimer(false)">
+              إنهاء
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>🌱 عالمك الحالي</h2>
+
+          <div class="grid three">
+            ${state.built.map((item) => `
+              <div class="card center">
+                <div style="font-size:2rem">${item.emoji}</div>
+                ${escapeHTML(item.name)}
+              </div>
+            `).join("") || "عالمك ينتظر أول جلسة مكتملة."}
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>ملاحظة مهمة</h2>
+
+          <p class="muted small">
+            المؤقت يعمل ما دامت الصفحة تعمل.
+            هذه الصفحة لا تستطيع قفل تطبيقات الجهاز الأخرى.
+          </p>
+        </div>
+      `;
+    }
+
+    function startFocusTimer() {
+      if (focusRunning) {
+        pauseFocusTimer();
+        return;
+      }
+
+      if (focusRemaining <= 0) {
+        const duration = Number($("focusDuration")?.value || 25);
+
+        focusTotal = duration * 60;
+        focusRemaining = focusTotal;
+      }
+
+      focusRunning = true;
+      clearInterval(focusTimer);
+
+      focusTimer = setInterval(() => {
+        focusRemaining--;
+
+        const clock = $("focusClock");
+
+        if (clock) {
+          clock.textContent = formatClock(focusRemaining);
+        }
+
+        if (focusRemaining <= 0) {
+          finishFocusTimer(true);
+        }
+      }, 1000);
+
+      showToast("بدأت جلسة التركيز ⏱️");
+    }
+
+    function pauseFocusTimer() {
+      focusRunning = false;
+      clearInterval(focusTimer);
+      focusTimer = null;
+
+      showToast("تم إيقاف المؤقت مؤقتًا.");
+    }
+
+    function stopFocusTimer() {
+      focusRunning = false;
+      clearInterval(focusTimer);
+      focusTimer = null;
+    }
+
+    function finishFocusTimer(completed) {
+      stopFocusTimer();
+
+      if (completed) {
+        const planet = state.planets.find(
+          (item) => item.id === activePlanet
+        );
+
+        const minutes = Math.round(focusTotal / 60);
+        const buildValue = $("buildChoice")?.value || "🌳|حديقة";
+        const parts = buildValue.split("|");
+
+        state.coins += Math.max(5, minutes);
+        state.totalMinutes += minutes;
+
+        if (planet) {
+          planet.minutes += minutes;
+        }
+
+        state.sessions.push({
+          planet: activePlanet,
+          minutes,
+          date: new Date().toISOString()
+        });
+
+        state.built.push({
+          emoji: parts[0],
+          name: parts[1],
+          planet: activePlanet
+        });
+
+        recordStudyDay();
+        saveState();
+
+        showToast("اكتملت الجلسة! ربحتِ نقاطًا 🎉");
+      }
+
+      focusRemaining = 0;
+      focusTotal = 0;
+
+      if (currentPage === "planet") {
+        renderWorldPlanet();
+      }
+    }
+
+    function recordStudyDay() {
+      const today = new Date().toISOString().slice(0, 10);
+
+      const yesterday = new Date(
+        Date.now() - 86400000
+      ).toISOString().slice(0, 10);
+
+      if (state.lastStudyDate !== today) {
+        state.streak =
+          state.lastStudyDate === yesterday
+            ? state.streak + 1
+            : 1;
+
+        state.lastStudyDate = today;
+      }
+
+      saveState();
+    }
+
+    // ========================================
+    // القسم الخامس عشر: الإحصاءات
+    // ========================================
+
+    function renderStats() {
+      return `
+        <h1>📊 إحصاءاتك</h1>
+
+        <div class="grid three">
+          <div class="card">
+            الوقت الكلي
+            <h2>${formatMinutes(state.totalMinutes)}</h2>
+          </div>
+
+          <div class="card">
+            الدروس المكتملة
+            <h2>${state.completedLessons.length}</h2>
+          </div>
+
+          <div class="card">
+            جلسات التركيز
+            <h2>${state.sessions.length}</h2>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>الوقت حسب الكوكب</h2>
+
+          ${state.planets.map((planet) => `
+            <div class="event between">
+              <span>
+                ${planet.emoji}
+                ${escapeHTML(planet.name)}
+              </span>
+
+              <b>${formatMinutes(planet.minutes)}</b>
+            </div>
+          `).join("")}
+        </div>
+
+        <div class="card">
+          <h2>آخر جلسات التركيز</h2>
+
+          ${state.sessions.slice(-10).reverse().map((session) => `
+            <div class="event">
+              <b>${session.minutes} دقيقة</b>
+              <div class="muted small">
+                ${new Date(session.date).toLocaleString("ar-SA")}
+              </div>
+            </div>
+          `).join("") || "لم تسجلي جلسات تركيز بعد."}
+        </div>
+      `;
+    }
+
+    // ========================================
+    // القسم السادس عشر: الجدول والتقويم
+    // ========================================
+
+    function renderCalendar() {
+      const year = calendarMonth.getFullYear();
+      const month = calendarMonth.getMonth();
+
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      const cells = [];
+
+      for (let i = 0; i < firstDay; i++) {
+        cells.push("<div></div>");
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const date =
+          year + "-" +
+          String(month + 1).padStart(2, "0") + "-" +
+          String(day).padStart(2, "0");
+
+        const hasEvent = state.events.some(
+          (event) => event.date === date
+        );
+
+        cells.push(`
+          <button class="day"
+            onclick="openEventForm('${date}')">
+            ${day}${hasEvent ? " •" : ""}
+          </button>
+        `);
+      }
+
+      const monthLabel = calendarMonth.toLocaleDateString(
+        "ar-SA",
+        { month: "long", year: "numeric" }
+      );
+
+      return `
+        <div class="between">
+          <h1>📅 الجدول</h1>
+
+          <button class="btn"
+            onclick="openEventForm()">
+            ＋ حدث جديد
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="between">
+            <button class="btn secondary"
+              onclick="changeCalendarMonth(-1)">
+              السابق
+            </button>
+
+            <b>${monthLabel}</b>
+
+            <button class="btn secondary"
+              onclick="changeCalendarMonth(1)">
+              التالي
+            </button>
+          </div>
+
+          <div class="daygrid" style="margin-top:12px">
+            ${["أح", "اث", "ثل", "أر", "خم", "جم", "سب"]
+              .map((day) => `
+                <div class="muted center small">${day}</div>
+              `).join("")}
+
+            ${cells.join("")}
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>الأحداث المحفوظة</h2>
+
+          ${state.events
+            .map((event, index) => ({ ...event, index }))
+            .sort((a, b) => a.date.localeCompare(b.date))
+            .map((event) => `
+              <div class="event">
+                <b>${escapeHTML(event.title)}</b>
+
+                <p class="muted small">
+                  ${event.date}
+                  ${event.time ? " · " + event.time : ""}
+                </p>
+
+                ${event.note
+                  ? `<p>${escapeHTML(event.note)}</p>`
+                  : ""}
+
+                <button class="btn danger"
+                  onclick="deleteCalendarEvent(${event.index})">
+                  حذف
+                </button>
+              </div>
+            `).join("") || "لا توجد أحداث محفوظة."}
+        </div>
+      `;
+    }
+
+    function changeCalendarMonth(amount) {
+      calendarMonth = new Date(
+        calendarMonth.getFullYear(),
+        calendarMonth.getMonth() + amount,
+        1
+      );
+
+      goPage("calendar");
+    }
+
+    function openEventForm(date = "") {
+      const defaultDate =
+        date || new Date().toISOString().slice(0, 10);
+
+      showModal(`
+        <h2>إضافة حدث 📅</h2>
+
+        <div class="field">
+          <label for="eventTitle">اسم الحدث</label>
+          <input id="eventTitle" placeholder="مثال: مراجعة الإنجليزية">
+        </div>
+
+        <div class="field">
+          <label for="eventDate">التاريخ</label>
+          <input id="eventDate" type="date" value="${defaultDate}">
+        </div>
+
+        <div class="field">
+          <label for="eventTime">الوقت</label>
+          <input id="eventTime" type="time">
+        </div>
+
+        <div class="field">
+          <label for="eventNote">ملاحظة</label>
+          <textarea id="eventNote" placeholder="تفاصيل إضافية"></textarea>
+        </div>
+
+        <button class="btn full" onclick="saveCalendarEvent()">
+          حفظ الحدث
+        </button>
+      `);
+    }
+
+    function saveCalendarEvent() {
+      const title = $("eventTitle").value.trim();
+      const date = $("eventDate").value;
+      const time = $("eventTime").value;
+      const note = $("eventNote").value.trim();
+
+      if (!title || !date) {
+        showToast("أدخلي اسم الحدث والتاريخ.");
+        return;
+      }
+
+      state.events.push({
+        title,
+        date,
+        time,
+        note
+      });
+
+      saveState();
+      closeModal();
+      goPage("calendar");
+
+      showToast("تم حفظ الحدث.");
+    }
+
+    function deleteCalendarEvent(index) {
+      state.events.splice(index, 1);
+      saveState();
+      goPage("calendar");
+    }
+
+    // ========================================
+    // القسم السابع عشر: المحادثات
+    // ========================================
+
+    function renderMessages() {
+      return `
+        <h1>💬 المحادثات</h1>
+
+        <div class="card">
+          <p class="muted">
+            يمكنك حفظ أسماء أصدقائك وكتابة رسائل تجريبية.
+            هذه النسخة لا ترسل رسائل فعلية إلى حسابات أخرى.
+          </p>
+
+          <div class="field">
+            <label for="friendName">اسم المستخدم</label>
+            <input id="friendName" placeholder="@username">
+          </div>
+
+          <button class="btn" onclick="addFriend()">
+            ＋ إضافة صديق
+          </button>
+
+          <h2>أصدقائي</h2>
+
+          ${state.friends.map((friend, index) => `
+            <div class="event between">
+              <b>👤 ${escapeHTML(friend)}</b>
+
+              <button class="btn secondary"
+                onclick="openChat(${index})">
+                كتابة رسالة
+              </button>
+            </div>
+          `).join("") || "لم تضيفي أصدقاء بعد."}
+        </div>
+
+        <div class="card">
+          <h2>الرسائل المحفوظة محليًا</h2>
+
+          ${state.messages.map((message) => `
+            <div class="event">
+              <b>إلى: ${escapeHTML(message.to)}</b>
+              <p>${escapeHTML(message.text)}</p>
+            </div>
+          `).join("") || "لا توجد رسائل بعد."}
+        </div>
+      `;
+    }
+
+    function addFriend() {
+      const name = $("friendName").value.trim().replace(/^@/, "");
+
+      if (!name) {
+        showToast("اكتبي اسم المستخدم.");
+        return;
+      }
+
+      if (!state.friends.includes(name)) {
+        state.friends.push(name);
+      }
+
+      saveState();
+      goPage("messages");
+    }
+
+    function openChat(index) {
+      const friend = state.friends[index];
+
+      if (!friend) {
+        return;
+      }
+
+      showModal(`
+        <h2>رسالة إلى ${escapeHTML(friend)}</h2>
+
+        <p class="muted small">
+          هذه الرسالة ستُحفظ على جهازك فقط.
+        </p>
+
+        <div class="field">
+          <label for="messageText">نص الرسالة</label>
+          <textarea id="messageText"
+            placeholder="اكتبي رسالتك هنا"></textarea>
+        </div>
+
+        <button class="btn full"
+          onclick="saveLocalMessage(${index})">
+          حفظ الرسالة
+        </button>
+      `);
+    }
+
+    function saveLocalMessage(friendIndex) {
+      const text = $("messageText").value.trim();
+
+      if (!text) {
+        showToast("اكتبي رسالة أولًا.");
+        return;
+      }
+
+      state.messages.push({
+        to: state.friends[friendIndex],
+        text
+      });
+
+      saveState();
+      closeModal();
+      goPage("messages");
+
+      showToast("تم حفظ الرسالة محليًا.");
+    }
+
+    // ========================================
+    // القسم الثامن عشر: الملف الشخصي
+    // ========================================
+
+    function renderProfile() {
+      return `
+        <div class="card">
+          <div class="row">
+            <div class="avatar">${state.avatar}</div>
+
+            <div class="grow">
+              <h1>${escapeHTML(state.name)}</h1>
+              <p class="muted">${escapeHTML(state.email)}</p>
+            </div>
+
+            <button class="btn secondary"
+              onclick="editProfile()">
+              تعديل
+            </button>
+          </div>
+
+          <div class="grid three">
+            <div class="card">
+              الكواكب
+              <h2>${state.planets.length}</h2>
+            </div>
+
+            <div class="card">
+              وقت التعلّم
+              <h2>${formatMinutes(state.totalMinutes)}</h2>
+            </div>
+
+            <div class="card">
+              الأصدقاء
+              <h2>${state.friends.length}</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>الإعدادات ⚙️</h2>
+
+          <button class="btn secondary"
+            onclick="openSettings()">
+            إعدادات الحساب والمظهر
+          </button>
+
+          <p class="muted small">
+            يمكنك تغيير اسمك وصورتك والمظهر.
+          </p>
+
+          <button class="btn danger"
+            onclick="logout()">
+            تسجيل الخروج
+          </button>
+        </div>
+      `;
+    }
+
+    function editProfile() {
+      selectedAvatar = state.avatar;
+
+      const avatars = [
+        "👩🏻‍🚀", "🧑🏽‍🚀", "👨🏻‍🚀",
+        "👽", "🦊", "🐱", "🐼", "🦄", "🤖"
+      ];
+
+      showModal(`
+        <h2>تعديل الملف الشخصي</h2>
+
+        <div class="field">
+          <label for="profileName">الاسم</label>
+          <input id="profileName"
+            value="${escapeHTML(state.name)}">
+        </div>
+
+        <p>اختاري صورتك</p>
+
+        <div class="choicegrid">
+          ${avatars.map((avatar, index) => `
+            <button class="choice"
+              id="avatarChoice${index}"
+              onclick="chooseAvatar('${avatar}',${index})">
+              ${avatar}
+            </button>
+          `).join("")}
+        </div>
+
+        <button class="btn full"
+          style="margin-top:12px"
+          onclick="saveProfile()">
+          حفظ التغييرات
+        </button>
+      `);
+    }
+
+    function chooseAvatar(avatar, index) {
+      selectedAvatar = avatar;
+
+      document.querySelectorAll('[id^="avatarChoice"]').forEach(
+        (button) => {
+          button.style.borderColor = "var(--line)";
+        }
+      );
+
+      const button = $("avatarChoice" + index);
+
+      if (button) {
+        button.style.borderColor = "var(--purple)";
+      }
+    }
+
+    function saveProfile() {
+      const name = $("profileName").value.trim();
+
+      if (name) {
+        state.name = name;
+      }
+
+      state.avatar = selectedAvatar;
+
+      saveState();
+      closeModal();
+      goPage("profile");
+
+      showToast("تم تحديث الملف الشخصي.");
+    }
+
+    function openSettings() {
+      showModal(`
+        <h2>الإعدادات ⚙️</h2>
+
+        <div class="card">
+          <h3>الحساب</h3>
+
+          <p class="muted small">
+            ${escapeHTML(state.email)}
+          </p>
+
+          <button class="btn secondary full"
+            onclick="sendPasswordReset()">
+            إرسال رابط تغيير كلمة المرور
+          </button>
+        </div>
+
+        <div class="card">
+          <h3>المظهر</h3>
+
+          <div class="row">
+            <button class="btn secondary"
+              onclick="setTheme('dark')">
+              🌌 داكن
+            </button>
+
+            <button class="btn secondary"
+              onclick="setTheme('light')">
+              ☀️ فاتح
+            </button>
+          </div>
+        </div>
+
+        <button class="btn secondary full"
+          onclick="closeModal()">
+          إغلاق
+        </button>
+      `);
+    }
+
+    function setTheme(themeName) {
+      state.theme = themeName;
+
+      document.body.classList.toggle(
+        "light",
+        themeName === "light"
+      );
+
+      saveState();
+      openSettings();
+    }
+
+    async function sendPasswordReset() {
+      try {
+        const { error } =
+          await supabaseClient.auth.resetPasswordForEmail(
+            state.email,
+            {
+              redirectTo: window.location.href
+            }
+          );
+
+        if (error) {
+          throw error;
+        }
+
+        closeModal();
+
+        showToast(
+          "إذا كان البريد مسجلًا، فستصلك رسالة الاستعادة."
+        );
+
+      } catch (error) {
+        showToast(
+          error.message || "تعذّر إرسال رسالة الاستعادة."
+        );
+      }
+    }
+
+    // ========================================
+    // القسم التاسع عشر: متجر المجرة
+    // ========================================
+
+    const shopItems = [
+      ["👽", "قناع فضائي", 10],
+      ["🧑🏻‍🚀", "بدلة رائد فضاء", 20],
+      ["🌌", "خلفية مجرية", 25],
+      ["🪐", "كوكب لامع", 30],
+      ["🛸", "مركبة فضائية", 35],
+      ["✨", "هالة نجمية", 15]
+    ];
+
+    function openStore() {
+      showModal(`
+        <h2>متجر المجرة ✦</h2>
+
+        <p>
+          رصيدك الحالي:
+          <b>${state.coins} نقطة</b>
+        </p>
+
+        <div class="grid three">
+          ${shopItems.map((item, index) => `
+            <div class="card center">
+              <div style="font-size:2rem">${item[0]}</div>
+
+              <b>${item[1]}</b>
+
+              <p>${item[2]} ✦</p>
+
+              <button class="btn"
+                onclick="buyShopItem(${index})">
+                شراء
+              </button>
+            </div>
+          `).join("")}
+        </div>
+
+        <h3>العناصر التي تملكينها</h3>
+
+        <p>
+          ${state.unlockedItems.map(escapeHTML).join("، ") ||
+            "لم تشتري عناصر بعد."}
+        </p>
+      `);
+    }
+
+    function buyShopItem(index) {
+      const item = shopItems[index];
+
+      if (!item) {
+        return;
+      }
+
+      if (state.unlockedItems.includes(item[1])) {
+        showToast("هذا العنصر موجود لديك بالفعل.");
+        return;
+      }
+
+      if (state.coins < item[2]) {
+        showToast("رصيدك لا يكفي لشراء هذا العنصر.");
+        return;
+      }
+
+      state.coins -= item[2];
+      state.unlockedItems.push(item[1]);
+
+      saveState();
+      openStore();
+
+      showToast("تم شراء " + item[1] + " ✨");
+    }
+
+    // ========================================
+    // القسم العشرون: عرض الصفحات
+    // ========================================
+
+    function renderPage() {
+      if (currentPage === "home") {
+        $("main").innerHTML = renderHome();
+        return;
+      }
+
+      if (currentPage === "planets") {
+        $("main").innerHTML = renderPlanets();
+        return;
+      }
+
+      if (currentPage === "stats") {
+        $("main").innerHTML = renderStats();
+        return;
+      }
+
+      if (currentPage === "calendar") {
+        $("main").innerHTML = renderCalendar();
+        return;
+      }
+
+      if (currentPage === "messages") {
+        $("main").innerHTML = renderMessages();
+        return;
+      }
+
+      if (currentPage === "profile") {
+        $("main").innerHTML = renderProfile();
+        return;
+      }
+
+      if (currentPage === "planet") {
+        openPlanet(activePlanet);
+        return;
+      }
+
+      $("main").innerHTML = renderHome();
+    }
+
+    // ========================================
+    // القسم الحادي والعشرون: تشغيل التطبيق
+    // ========================================
+
+    async function initializeApp() {
+      try {
+        await bootApp();
+      } catch (error) {
+        console.error("Application startup error:", error);
+      }
+    }
+
+    initializeApp();
+  </script>
+</body>
+</html>
