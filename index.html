@@ -8,8 +8,8 @@
 <section id="app" class="hidden"><header class="top"><div><b>🪐 مجرة التعلّم</b><div id="greet" class="muted small"></div></div><div class="row"><button class="coin" onclick="store()">✦ <span id="coins">0</span></button><span class="streak">🔥 <span id="streak">0</span></span><button class="btn secondary" onclick="theme()">◐</button></div></header><main id="main"></main><nav class="nav"><button data-page="home" onclick="page('home')"><b>⌂</b>الرئيسية</button><button data-page="planets" onclick="page('planets')"><b>🪐</b>الكواكب</button><button data-page="stats" onclick="page('stats')"><b>▥</b>الإحصاءات</button><button data-page="calendar" onclick="page('calendar')"><b>▦</b>الجدول</button><button data-page="messages" onclick="page('messages')"><b>▱</b>المحادثات</button><button data-page="profile" onclick="page('profile')"><b>☺</b>ملفي</button></nav></section><div id="modalroot"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
 /* ضع رابط Supabase ومفتاح Publishable/anon هنا فقط. لا تستخدم service_role أو Secret key. */
-const SUPABASE_URL="PASTE_YOUR_SUPABASE_URL_HERE";
-const SUPABASE_KEY="PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+const SUPABASE_URL="https://zlrohdqstykwcpqkvawd.supabase.co";
+const SUPABASE_KEY="sb_publishable_2bS6caXTWH0hZ_ZQtmPtIA_eOFAsAp6";
 let sb=null;try{if(window.supabase&&SUPABASE_URL.startsWith("https://")&&!SUPABASE_URL.includes("PASTE_")&&!SUPABASE_KEY.includes("PASTE_"))sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY)}catch(e){}
 const $=x=>document.getElementById(x);let authmode="login",user=null,pg="home",active="english",etab="lessons",stab="world",picked="👩🏻‍🚀",timer=null,remaining=0,total=0,running=false,eventsMonth=new Date(),chosenEnv="home",selDate="";
 const basePlanets=()=>[{id:"english",name:"تعلم اللغة الإنجليزية",emoji:"🌍",type:"english",progress:0,minutes:0},{id:"math",name:"الرياضيات",emoji:"🪐",type:"subject",progress:0,minutes:0},{id:"science",name:"العلوم",emoji:"🔵",type:"subject",progress:0,minutes:0}];
